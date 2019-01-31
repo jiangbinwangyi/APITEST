@@ -67,7 +67,6 @@ export default new Vuex.Store({
 			axios.get('/front/api/allFriendlinks?ajax')
 				.then((res) => {
 					if(res.data) {
-						console.log(res.data.data);
 						commit('setLink', res.data.data);
 					} else {
 						commit('setLink', null);

@@ -11,7 +11,7 @@
 				</div>
 				</Col>
 				<Col span="5">
-				<Input search enter-button placeholder="全站内容搜索" @on-search="allSearch($event)" style="padding-top: 12px;" />
+				<Input search enter-button placeholder="全站内容搜索" @on-search="toSearch($event)" style="padding-top: 12px;" />
 				</Col>
 				<Col span="2">
 					<div class="layout-user" v-if="userInfo.status==1">
@@ -54,7 +54,6 @@
 		props: ['menu'],
 		computed: {
 			userInfo(){
-				console.log(this.$store.state.userInfo);
 				return this.$store.state.userInfo;
 			},
 			navList() {
@@ -93,7 +92,6 @@
 								m.child.push(module(c));
 							}
 						}
-
 						arr.push(m);
 					}
 				}
@@ -110,7 +108,7 @@
 				this.$router.push({
 					name: 'search',
 					params: {
-						val
+						val: encodeURI(val)
 					},
 				})
 			}

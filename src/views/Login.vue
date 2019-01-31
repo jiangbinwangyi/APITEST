@@ -67,6 +67,7 @@
 						  method:'post',
 						  url: '/login?ajax',
 						  data: params,
+						  withCredentials: true,
 						}).then(response => {
 							console.log(response.data);
 						})

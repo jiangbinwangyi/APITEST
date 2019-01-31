@@ -27,6 +27,7 @@
 			}
 		},
 		mounted() {
+			console.log('123')
 //			this.getList(this.$route.params.id);
 		},
 		methods: {
@@ -43,9 +44,9 @@
 			getSearchList(val){
 				axios({
 					methods: 'get',
-					url: '/front/api/search?ajax&tag='+ encodeURI(encodeURI(val)), 
+					url: '/front/api/search?ajax&tag='+ encodeURI(val), 
 				}).then(response => {
-					console.log(response.data);
+					this.list = response.data.data.list
 				})
 			},
 			//跳转到文章页（带文章ID参数）
@@ -62,12 +63,12 @@
 		watch:{
 			$route: {
 		    handler: function(val, oldVal){
-		    	if(val.params.name == 'list'){
+		    	if(val.name == 'list'){
 		    		this.getList(val.params.id)
-		    	}else if(val.params.name == 'search'){
+		    	}else if(val.name == 'search'){
 		    		this.getSearchList(val.params.val)
 		    	}else{
-		    		this.list = null;
+		    		this.list = [];
 		    	}
 		    },
 		    // 深度观察监听
